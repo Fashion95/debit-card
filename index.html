@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preloaded Credit Card Store</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Old English Text MT;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #c6ffdd, #fbd786, #f7797d);
+            /* background: linear-gradient(120deg, #ff9a9e, #fad0c4); */
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            animation: blink 1.5s infinite;
+        }
+
+        /* Blink animation */
+        @keyframes blink {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Store Section */
+        .store {
+            flex: 3;
+        }
+
+        .store h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Individual Card */
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .card-content h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+            color: #4caf50;
+        }
+
+        .card-content p {
+            margin: 5px 0;
+        }
+
+        .card-content button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        .card-content button:hover {
+            background-color: #45a049;
+        }
+
+        /* Cart Section */
+        .cart {
+            flex: 1;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+        }
+
+        .cart h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .cart-item button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-item button:hover {
+            background-color: #d32f2f;
+        }
+
+        .cart-total {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .checkout {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        .checkout:hover {
+            background-color: #45a049;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            padding: fixed;
+            
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>THE CREDIT CARD UNION</h1>
+        <p>Your trusted place for preloaded cards</p>
+    </div>
+
+    <div class="main-container">
+        <!-- Store Section -->
+        <div class="store">
+            <h2>Available Cards</h2>
+
+            <div class="cards-container">
+                <!-- Example Card 1 -->
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="MasterCard">
+                    <div class="card-content">
+                        <h3>Mastercard</h3>
+                        <p>Balance: $1,000</p>
+                        <p>Country: United States</p>
+                        <p>Price: $20 USD</p>
+                        <button onclick="addToCart('Mastercard', '$1,000', 'United States', 20)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Example Card 2 -->
+                <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+            </div>
+
+            <div class="card">
+                <img src="l.jpg" alt="Visa">
+                <div class="card-content">
+                    <h3>Visacard</h3>
+                    <p>Balance: $2,000</p>
+                    <p>Country: United Kingdom</p>
+                    <p>Price: $40 USD</p>
+                    <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                </div>
+                </div>
+
+                <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+        <div class="card">
+            <img src="l.jpg" alt="Visa">
+            <div class="card-content">
+                <h3>Visacard</h3>
+                <p>Balance: $2,000</p>
+                <p>Country: United Kingdom</p>
+                <p>Price: $40 USD</p>
+                <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+            </div>
+            </div>
+
+            <div class="card">
+                <img src="l.jpg" alt="Visa">
+                <div class="card-content">
+                    <h3>Visacard</h3>
+                    <p>Balance: $2,000</p>
+                    <p>Country: United Kingdom</p>
+                    <p>Price: $40 USD</p>
+                    <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                </div>
+                </div>
+
+                <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                        <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                        <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                        </div>
+                        </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>                                                                                    <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <img src="l.jpg" alt="Visa">
+                    <div class="card-content">
+                        <h3>Visacard</h3>
+                        <p>Balance: $2,000</p>
+                        <p>Country: United Kingdom</p>
+                        <p>Price: $40 USD</p>
+                        <button onclick="addToCart('Visa', '$2,000', 'United Kingdom', 40)">Add to Cart</button>
+                    </div>
+                    </div>
+                                                                                                
+        
+        
+        
+        <!-- Cart Section -->
+        <div class="cart">
+            <h2>Shopping Cart</h2>
+            <div class="cart-items" id="cart-items">
+                <p>Your cart is empty.</p>
+            </div>
+            <div class="cart-total" id="cart-total">Total: $0.00</div>
+            <button class="checkout" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Preloaded Credit Card Store. All rights reserved.</p>
+    </div>
+
+    <script>
+        const cart = [];
+
+        // Add an item to the cart
+        function addToCart(type, balance, country, price) {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
+            cart.push({ type, balance, country, price });
+
+            // Update cart display
+            updateCartDisplay();
+
+            // Update total price
+            updateCartTotal();
+        }
+
+        // Remove an item from the cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+
+            // Update cart display
+            updateCartDisplay();
+
+            // Update total price
+            updateCartTotal();
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                cartItems.innerHTML = '';
+                cart.forEach((item, index) => {
+                    cartItems.innerHTML += `
+                        <div class="cart-item">
+                            <span>${item.type} (${item.balance})</span>
+                            <button onclick="removeFromCart(${index})">Remove</button>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        // Update cart total
+        function updateCartTotal() {
+            const cartTotal = document.getElementById('cart-total');
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        // Redirect to the checkout page
+        function checkout() {
+            // Save cart details in localStorage for checkout page use
+            localStorage.setItem('cartItems', cart.length);
+            localStorage.setItem('cartTotal', cart.reduce((sum, item) => sum + item.price, 0).toFixed(2));
+
+            alert('Redirecting to the checkout page...');
+            window.location.href = 'out.html';
+            const confirmationCode = `ORD-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+            localStorage.setItem('confirmationCode', confirmationCode);
+
+            //alert(`Your confirmation code is: ${confirmationCode}. `);
+            window.location.href = 'out.html';
+        }
+
+        // Additional post-checkout logic
+        function handleCheckoutSuccess() {
+            const thankYouMessage = document.createElement('div');
+            thankYouMessage.style.background = '#e8f5e9';
+            thankYouMessage.style.color = '#2e7d32';
+            thankYouMessage.style.padding = '20px';
+            thankYouMessage.style.marginTop = '20px';
+            thankYouMessage.style.textAlign = 'center';
+            thankYouMessage.style.borderRadius = '5px';
+            thankYouMessage.innerHTML = `
+                <h2>Thank you for your order!</h2>
+                <p>Your order has been placed successfully. You will receive an email confirmation shortly.</p>
+                <p><strong>Your confirmation code: ${localStorage.getItem('confirmationCode')}</strong></p>
+                <button style="background-color: #4caf50; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;" onclick="window.location.href='index.html'">Return to Home</button>
+            `;
+            document.body.appendChild(thankYouMessage);
+        }
+
+        if (window.location.href.includes('out.html')) {
+            handleCheckoutSuccess();
+        }
+        
+        
+    </script>
+</body>
+</html>
